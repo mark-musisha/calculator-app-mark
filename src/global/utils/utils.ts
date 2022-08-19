@@ -24,6 +24,7 @@ export class Stack implements IStack {
     '/',
     '(',
     ')',
+    '.',
     'log',
     'lg',
     'sqrt',
@@ -55,7 +56,7 @@ export class Stack implements IStack {
         this.STACK.push(this.givenNumber);
         this.givenNumber = '';
       }
-      const parsedInt = parseInt(value);
+      const parsedInt = parseFloat(value);
 
       // if(this.givenNumber === '-') {
 
@@ -135,15 +136,11 @@ export class Stack implements IStack {
   }
 
   bodmas(digits: string[]): number {
-    //loop through array
-    //find division
-    //get index, get array[index - 1] array[index + 1]
-    //pass values to calculate function
     let final = 0;
     let answer = 0;
 
     if (digits.length === 1) {
-      final = parseInt(digits[0]);
+      final = parseFloat(digits[0]);
     }
 
     for (let i = 0; i <= digits.length; i++) {
@@ -153,7 +150,7 @@ export class Stack implements IStack {
 
         if (this.operators.includes(digits[i - 1])) {
           if (digits[i - 1] !== '+' || digits[i - 1] !== '-') {
-            firstDigit = parseInt(digits[i - 1].slice(1));
+            firstDigit = parseFloat(digits[i - 1].slice(1));
             let operator = digits[i][0];
             digits[i - 1] = digits[i - 1][0];
             answer = this.calculate(firstDigit, secondDigit, operator);
@@ -162,19 +159,19 @@ export class Stack implements IStack {
             digits.splice(i, 1);
           }
         } else {
-          firstDigit = parseInt(digits[i - 1]);
+          firstDigit = parseFloat(digits[i - 1]);
 
           let operator = digits[i][0];
           digits[i - 1] = digits[i - 1][0];
           let second = digits[i].slice(1);
-          secondDigit = parseInt(second);
+          secondDigit = parseFloat(second);
           answer = this.calculate(firstDigit, secondDigit, operator);
 
           digits[i - 1] = answer.toString();
           digits.splice(i, 1);
 
           if (digits.length === 1) {
-            answer = parseInt(digits[0]);
+            answer = parseFloat(digits[0]);
             return answer;
           }
           this.bodmas(digits);
@@ -189,7 +186,7 @@ export class Stack implements IStack {
 
         if (this.operators.includes(digits[i - 1])) {
           if (digits[i - 1] !== '+' || digits[i - 1] !== '-') {
-            firstDigit = parseInt(digits[i - 1].slice(1));
+            firstDigit = parseFloat(digits[i - 1].slice(1));
             let operator = digits[i][0];
             digits[i - 1] = digits[i - 1][0];
             answer = this.calculate(firstDigit, secondDigit, operator);
@@ -198,12 +195,12 @@ export class Stack implements IStack {
             digits.splice(i, 1);
           }
         } else {
-          firstDigit = parseInt(digits[i - 1]);
+          firstDigit = parseFloat(digits[i - 1]);
 
           let operator = digits[i][0];
           digits[i - 1] = digits[i - 1][0];
           let second = digits[i].slice(1);
-          secondDigit = parseInt(second);
+          secondDigit = parseFloat(second);
           answer = this.calculate(firstDigit, secondDigit, operator);
 
           digits[i - 1] = answer.toString();
@@ -211,7 +208,7 @@ export class Stack implements IStack {
         }
 
         if (digits.length === 1) {
-          answer = parseInt(digits[0]);
+          answer = parseFloat(digits[0]);
           return answer;
         }
         this.bodmas(digits);
@@ -222,7 +219,7 @@ export class Stack implements IStack {
 
         if (this.operators.includes(digits[i - 1])) {
           if (digits[i - 1] !== '+' || digits[i - 1] !== '-') {
-            firstDigit = parseInt(digits[i - 1].slice(1));
+            firstDigit = parseFloat(digits[i - 1].slice(1));
             let operator = digits[i][0];
             digits[i - 1] = digits[i - 1][0];
             answer = this.calculate(firstDigit, secondDigit, operator);
@@ -231,30 +228,31 @@ export class Stack implements IStack {
             digits.splice(i, 1);
           }
         } else {
-          firstDigit = parseInt(digits[i - 1]);
+          firstDigit = parseFloat(digits[i - 1]);
 
           let operator = digits[i][0];
           digits[i - 1] = digits[i - 1][0];
           let second = digits[i].slice(1);
-          secondDigit = parseInt(second);
+          secondDigit = parseFloat(second);
           answer = this.calculate(firstDigit, secondDigit, operator);
 
           digits[i - 1] = answer.toString();
           digits.splice(i, 1);
         }
         if (digits.length === 1) {
-          answer = parseInt(digits[0]);
+          answer = parseFloat(digits[0]);
           return answer;
         }
         this.bodmas(digits);
       }
-      if (digits[i].includes('-')) {
+
+      if (digits[i].includes('-') && digits[i - 1]) {
         let firstDigit = 0;
         let secondDigit = 0;
 
         if (this.operators.includes(digits[i - 1])) {
           if (digits[i - 1] !== '+' || digits[i - 1] !== '-') {
-            firstDigit = parseInt(digits[i - 1].slice(1));
+            firstDigit = parseFloat(digits[i - 1].slice(1));
             let operator = digits[i][0];
             digits[i - 1] = digits[i - 1][0];
             answer = this.calculate(firstDigit, secondDigit, operator);
@@ -263,19 +261,19 @@ export class Stack implements IStack {
             digits.splice(i, 1);
           }
         } else {
-          firstDigit = parseInt(digits[i - 1]);
+          firstDigit = parseFloat(digits[i - 1]);
 
           let operator = digits[i][0];
           digits[i - 1] = digits[i - 1][0];
           let second = digits[i].slice(1);
-          secondDigit = parseInt(second);
+          secondDigit = parseFloat(second);
           answer = this.calculate(firstDigit, secondDigit, operator);
 
           digits[i - 1] = answer.toString();
           digits.splice(i, 1);
         }
         if (digits.length === 1) {
-          answer = parseInt(digits[0]);
+          answer = parseFloat(digits[0]);
           return answer;
         }
         this.bodmas(digits);

@@ -17,19 +17,10 @@ html {
   border-radius: 1rem;
   background: #4b5568;
 
-  .description {
-    font-size: 2rem;
-    margin: 0.8rem;
-    margin-bottom: 1.2rem;
-    color: #fff;
-    text-align: right;
-    min-height: 5rem;
-  }
-
   &-screen {
     font-family: 'Orbitron';
     text-align: right;
-    padding: 1rem;
+    padding-bottom: 1rem;
     font-size: 4.5rem;
     margin: 0.5rem 0.8rem 1rem 0.8rem;
     background-color: #b2c2b3;
@@ -96,4 +87,13 @@ html {
       }
     }
   }
+}
+
+.description {
+  font-size: 2rem;
+  margin: 0.8rem;
+  margin-bottom: 1.2rem;
+  color: #fff;
+  text-align: right;
+  min-height: 5rem;
 }
